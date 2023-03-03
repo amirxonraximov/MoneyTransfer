@@ -5,12 +5,11 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class OutcomeDto {
+public class IncomeDto {
 
     private Integer fromCardId;
 
     private Integer toCardId;
 
     private Double amount;
-
 }

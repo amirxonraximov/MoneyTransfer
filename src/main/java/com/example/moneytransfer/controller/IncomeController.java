@@ -2,8 +2,9 @@ package com.example.moneytransfer.controller;
 
 import com.example.moneytransfer.payload.ApiResponse;
 import com.example.moneytransfer.payload.IncomeDto;
-import com.example.moneytransfer.payload.OutcomeDto;
-import com.example.moneytransfer.service.OutcomeService;
+import com.example.moneytransfer.payload.UserDto;
+import com.example.moneytransfer.repository.IncomeRepository;
+import com.example.moneytransfer.service.IncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -11,32 +12,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/outCome")
-public class OutcomeController {
+@RequestMapping("/api/inCome")
+public class IncomeController {
 
     @Autowired
-    OutcomeService outcomeService;
+    IncomeService incomeService;
 
     @PostMapping
-    public HttpEntity<?> outcome(@RequestBody OutcomeDto outcomeDto) {
+    public HttpEntity<?> income(@RequestBody IncomeDto incomeDto) {
 
-        ApiResponse apiResponse = outcomeService.outcome(outcomeDto);
+        ApiResponse apiResponse = incomeService.income(incomeDto);
         return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse);
     }
 
     @GetMapping
     public HttpEntity<?> get() {
 
-        ApiResponse apiResponse = outcomeService.get();
+        ApiResponse apiResponse = incomeService.get();
         return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse);
     }
 
-    @GetMapping("/{outcomeId}")
-    public HttpEntity<?> getById(@PathVariable Integer outcomeId) {
+    @GetMapping("/{incomeId}")
+    public HttpEntity<?> getById(@PathVariable Integer incomeId) {
 
-        ApiResponse apiResponse = outcomeService.getById(outcomeId);
+        ApiResponse apiResponse = incomeService.getById(incomeId);
         return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse);
     }
-
-
 }
